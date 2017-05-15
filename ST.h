@@ -1,9 +1,9 @@
-typedef struct no no;
+typedef struct no Tno;
+
 struct no {
-  char palavra[50];
-  int vez;
-  no *esq, *dir;
+        struct Titem *i;
+        struct no *esq, *dir;
 };
 
-void insere(no **r, char *word);
-void printa(no *r);
+void insere(Tno **r, char *word);
+void printa(Tno *r);

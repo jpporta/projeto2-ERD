@@ -1,14 +1,13 @@
-#include "ST.h"
+#include "item.h"
+#include "st.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-void insere(no **r, char *word) {
+void insere(Tno **r, char *word) {
   if (*r == NULL) {
-    *r = (no *)malloc(sizeof(no));
-    (*r)->vez = 1;
-    (*r)->esq = (*r)->dir = NULL;
-    strcpy((*r)->palavra, word);
+    *r = (Tno *)malloc(sizeof(Tno));
+    addItem(&(*r)->i, word);
   }
   if (strcmp((*r)->palavra, word) == 0)
     (*r)->vez++;
@@ -17,7 +16,7 @@ void insere(no **r, char *word) {
   else
     insere(&(*r)->dir, word);
 }
-void printa(no *r) {
+void printa(Tno *r) {
   if (r) {
     printa(r->esq);
     printf("%s", r->palavra);
