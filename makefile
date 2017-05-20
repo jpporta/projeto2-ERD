@@ -1,6 +1,6 @@
 ### Makefile ###
 
-all: prog run clean rmpoper
+all: prog clean run rmpoper
 
 prog: main.o st.o item.o
 	gcc -Wall -o prog main.o st.o item.o -lm

@@ -4,22 +4,26 @@
 #include <stdlib.h>
 #include <string.h>
 
+// insere no a arvore
 void insere(Tno **r, char *word) {
+  int i;
   if (*r == NULL) {
     *r = (Tno *)malloc(sizeof(Tno));
     addItem(&(*r)->i, word);
+  } else {
+    i = compara(&(*r)->i, word);
+    if (i > 0)
+      insere(&(*r)->esq, word);
+    else if (i < 0)
+      insere(&(*r)->dir, word);
   }
-  if (strcmp((*r)->palavra, word) == 0)
-    (*r)->vez++;
-  else if (strcmp((*r)->palavra, word) < 0)
-    insere(&(*r)->esq, word);
-  else
-    insere(&(*r)->dir, word);
 }
 void printa(Tno *r) {
   if (r) {
-    printa(r->esq);
-    printf("%s", r->palavra);
-    printa(r->dir);
+    if (r->esq)
+      printa(r->esq);
+    printaItem(r->i);
+    if (r->dir)
+      printa(r->dir);
   }
 }
