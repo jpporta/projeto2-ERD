@@ -1,6 +1,6 @@
 typedef struct Titem Ti;
 struct Titem {
-        char palavra[50];
+        char palavra[100];
         long int vez;
 };
 void addItem(Ti **i, char *word);

@@ -21,8 +21,8 @@ int compara(Ti **i, char *word) {
 }
 void adicionaVez(Ti **i) { (*i)->vez++; } // aumenta a frequencia da palavra
 void printaItem(Ti *i) {
-  printf("%s  ", i->palavra);
-  printf("%li\n", i->vez);
+  printf("%li ", i->vez);
+  puts(i->palavra);
 }
 char limpa(char l) { // limpa uma palavra recebida, transformando-a em
                      // somente letras
