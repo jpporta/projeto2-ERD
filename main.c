@@ -10,19 +10,12 @@ int main(int argc, char *argv[]) {
   Tno *raiz = NULL;
   Ti *p;
   //---------------Pega argumentos----------------------
-  if (argc == 2) { // argc = nº de argumentos, ./prog = argumento 1, -nNUMERO =
-                   // argumento 2. <in.txt NÃO É ARGUMENTO
-    i = 2; // argumentos ficam em uma matriz, -nNUMERO é o 2º argumento então
-           // ficará na 2ª linha da matriz argv[].
-    // i = 2 para ignorar o "-n" do argumento e pegar a parte do NUMERO.
-    while ('\0' != argv[1][i]) {
-      num[i - 2] =
-          argv[1]
-              [i]; // passa a string de argumento após o -n para uma string num.
-      i++;
-    }
-    num[i - 2] = '\0';
+  if (argc > 1) { 
+    strcpy(num, &argv[1][2]);
     n = atoi(num); // transforma n em int
+    if(argc > 2){
+      //argumentos opicionais
+    }
   } else {
     printf("Argumentos insuficientes\n");
     exit(0);
