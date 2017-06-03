@@ -1,8 +1,9 @@
-#include "item.h"
-#include "ST.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "item.h"
+#include "ST.h"
+
 
 // insere no a arvore
 void insere(Tno **r, char *word, int *numero) {

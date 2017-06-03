@@ -8,3 +8,4 @@ int compara(Ti **i, char *word);
 void printaItem(Ti *i);
 char limpa(char l);
 void adicionaVez(Ti **i);
+void printaArq(Ti *i, FILE *out);

@@ -1,7 +1,8 @@
-#include "item.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "item.h"
+
 
 void addItem(Ti **i, char *word) { // adiciona item ao no da arvore
   (*i) = (Ti *)malloc(sizeof(Ti));
@@ -23,6 +24,11 @@ void adicionaVez(Ti **i) { (*i)->vez++; } // aumenta a frequencia da palavra
 void printaItem(Ti *i) {
   printf("%li ", i->vez);
   puts(i->palavra);
+}
+void printaArq(Ti *i, FILE *out) {
+  fprintf(out, "%li ", i->vez);
+  fputs(i->palavra, out);
+  fprintf(out, "\n");
 }
 char limpa(char l) { // limpa uma palavra recebida, transformando-a em
                      // somente letras
