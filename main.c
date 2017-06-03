@@ -1,3 +1,14 @@
+/*
+Integrante 1 - Nome: JOÃO PEDRO PORTA RA: 16039778 
+Integrante 2 - Nome: MARCELO DIB COUTINHO RA: 16023673 
+Integrante 3 - Nome: RAFAEL FIORAMONTE RA: 16032708 
+Resultados obtidos: _______________________________________________________ 
+Projeto básico: _____ % concluído - Obs: _____________________________________ 
+( ) Opcional 1 - Obs: ______________________________________________________ 
+( ) Opcional 2 - Obs: ______________________________________________________ 
+( ) Opcional 3 - Obs: ______________________________________________________
+( ) Opcional 4 - Obs: ______________________________________________________
+*/
 #include "item.h"
 #include "ST.h"
 #include <stdio.h>
@@ -14,6 +25,21 @@ int main(int argc, char *argv[]) {
     strcpy(num, &argv[1][2]);
     n = atoi(num); // transforma n em int
     if(argc > 2){
+      for(i = 2; i < argc; i++){
+        l = argv[i][1];
+        switch (l){
+          case 'w':
+            break;
+          case 'r':
+            break;
+          case 's':
+            break;
+          case 'b':
+            break;
+          case 'p':
+            break;
+        }
+      }
       //argumentos opicionais
     }
   } else {
