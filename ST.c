@@ -78,13 +78,18 @@ void printa(Tno *r) {
       printa(r->dir);
   }
 }
-void freeEveryOne(Tno **raiz) {
+void freeEveryOne(Tno **raiz, int tudo) {
   if (*raiz == NULL) return;
-  freeEveryOne(&((*raiz)->esq));
-  freeEveryOne(&((*raiz)->dir));
-  free((*raiz)->i);
-  free(*raiz);
+  freeEveryOne(&((*raiz)->esq), tudo);
+  freeEveryOne(&((*raiz)->dir), tudo);
+  if(tudo){
+    free((*raiz)->i);
+   free(*raiz);
+   }
 }
+
+
+// Usado quando opcao S esta ativa, escontra palavra e printa ela
 void achaItem(Tno *raiz, char *word){
   int i;
   if(raiz != NULL){
@@ -103,33 +108,67 @@ void achaItem(Tno *raiz, char *word){
     printf("Nao encontrado\n");
   }
 }
+
+//para quando a opcao P esta ativa
 void printaArvore(Tno *raiz, int max, int maxi){
-  if(max == 0) return;
+  //
+}
 
-  //ESQUERDA
-  for(int i = 0; i <= (maxi - max)-1; i++){
-    printf("|");
-    if(i != (maxi - max)-1) printf("  ");
+
+//para quando a opcao B esta ativa
+long int vetorizaArvore(Tno *raiz, Tl **lista){
+  long int dir, esq;
+  if(raiz != NULL){
+    esq = vetorizaArvore(raiz->esq, lista);
+    insereVetor(lista, raiz);
+    dir = vetorizaArvore(raiz->dir, lista);
+    return esq + dir + 1;
   }
-  if(raiz == NULL){
-    printf("- (NULL) (altura %i)\n", (maxi - max));
-    printaArvore(raiz, max-1, maxi);
+  return 0;
+}
+
+Tl* insereVetor(Tl **lista, Tno *raiz){
+  if(*lista == NULL){
+    *lista = (Tl*)malloc(sizeof(Tl));
+    (*lista)->i = raiz->i;
+    (*lista)->prox = NULL;
+    return *lista;
+  }
+  (*lista) -> prox = insereVetor(&((*lista)->prox), raiz);
+  return (*lista)->prox;
+}
+
+void criaArvoreBalanceada(Tno **raiz, Tl *lista, long int tam, long int altura){
+  int i;
+  Tl *aux; 
+  aux = lista;
+  *raiz = (Tno*)malloc(sizeof(Tno));
+  (*raiz) -> dir = NULL;
+  (*raiz) -> esq = NULL;
+
+  if(tam > 1){
+    for(i = 0; i < tam/2; i++){
+        aux = aux->prox;
+    }
+
+    (*raiz)->i = aux->i;
+    (*raiz)->altura = altura;
+
+    if(tam % 2 == 0) criaArvoreBalanceada(&(*raiz)->esq, lista, tam/2, altura + 1);
+    else criaArvoreBalanceada(&(*raiz)->esq, lista, (tam - 1)/2, altura + 1);
+
+    criaArvoreBalanceada(&(*raiz)->dir, aux->prox, (tam-1)/2, altura + 1);
+    
   }
   else{
-     printf("- %s (altura %i)\n",raiz->i->palavra, (maxi - max));
-     printaArvore(raiz->esq, max-1, maxi);
-  }
-
-  //DIREITA
-  for(int i = 0; i <= (maxi - max)-1; i++){
-    if(i != (maxi - max)-1) printf("  ");
-  }
-  if(raiz == NULL){
-    printf("|- (NULL) (altura %i)\n", (maxi - max));
-    printaArvore(raiz, max-1, maxi);
-  }
-  else{
-     printf("- %s (altura %i)\n",raiz->i->palavra, (maxi - max));
-     printaArvore(raiz->esq, max-1, maxi);
+     (*raiz)->i = aux->i;
+    (*raiz)->altura = altura;
   }
 }
+void freeVetor(Tl **lista){
+  if(*lista == NULL) return;
+  freeVetor(&(*lista)->prox);
+  free(*lista);
+}
+
+

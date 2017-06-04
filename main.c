@@ -26,6 +26,8 @@ int main(int argc, char *argv[]) {
   Ti *res;
   int n,w,r,s,b,p;
   FILE *in, *out;
+  Tl *lista, *lista2;
+  lista = lista2 = NULL;
 
   n = w = r = s = b = p = 0;
   //---------------Pega argumentos----------------------
@@ -115,6 +117,14 @@ int main(int argc, char *argv[]) {
   }
   // FIM RECEPCAO E INSERCAO
 
+
+  if (b){
+    long int tam;
+    tam = vetorizaArvore(raiz, &lista);
+    freeEveryOne(&raiz, 0);
+    criaArvoreBalanceada(&raiz, lista, tam, 1);
+    freeVetor(&lista);
+  }
   if(n){ // Se n for verdade
     if (numero < numb)
       numb = numero;
@@ -137,6 +147,6 @@ int main(int argc, char *argv[]) {
     printaArvore(raiz, maxi-1, maxi);
   }
   if(w) fclose(out); // se w fecha o arquivo
-  freeEveryOne(&raiz);
+  freeEveryOne(&raiz, 1);
   return 0;
 }
