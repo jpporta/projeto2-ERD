@@ -12,3 +12,4 @@ void insere(Tno **r, char *word, int *numero, long int altura);
 void printa(Tno *r);
 void freeEveryOne(Tno **raiz);
 void achaItem(Tno *raiz, char *word);
+void printaArvore(Tno *raiz, int max, int maxi);

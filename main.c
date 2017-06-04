@@ -132,6 +132,10 @@ int main(int argc, char *argv[]) {
     clock_t end = clock();
     printf("%li\n", (long int)(end - begin));
   }
+  if(p){
+    printf("%s\n", raiz->i->palavra);
+    printaArvore(raiz, maxi-1, maxi);
+  }
   if(w) fclose(out); // se w fecha o arquivo
   freeEveryOne(&raiz);
   return 0;

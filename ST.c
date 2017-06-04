@@ -103,3 +103,33 @@ void achaItem(Tno *raiz, char *word){
     printf("Nao encontrado\n");
   }
 }
+void printaArvore(Tno *raiz, int max, int maxi){
+  if(max == 0) return;
+
+  //ESQUERDA
+  for(int i = 0; i <= (maxi - max)-1; i++){
+    printf("|");
+    if(i != (maxi - max)-1) printf("  ");
+  }
+  if(raiz == NULL){
+    printf("- (NULL) (altura %i)\n", (maxi - max));
+    printaArvore(raiz, max-1, maxi);
+  }
+  else{
+     printf("- %s (altura %i)\n",raiz->i->palavra, (maxi - max));
+     printaArvore(raiz->esq, max-1, maxi);
+  }
+
+  //DIREITA
+  for(int i = 0; i <= (maxi - max)-1; i++){
+    if(i != (maxi - max)-1) printf("  ");
+  }
+  if(raiz == NULL){
+    printf("|- (NULL) (altura %i)\n", (maxi - max));
+    printaArvore(raiz, max-1, maxi);
+  }
+  else{
+     printf("- %s (altura %i)\n",raiz->i->palavra, (maxi - max));
+     printaArvore(raiz->esq, max-1, maxi);
+  }
+}

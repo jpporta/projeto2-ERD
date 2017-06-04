@@ -37,5 +37,5 @@ char limpa(char l) { // limpa uma palavra recebida, transformando-a em
   return l;
 }
 void printaItemPlus(Ti *i, long int altura){
-  printf("%li %s %li __\n", i->vez, i->palavra, altura);
+  printf("%li %s %li ", i->vez, i->palavra, altura);
 }
