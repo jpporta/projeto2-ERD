@@ -6,7 +6,7 @@
 
 
 // insere no a arvore
-void insere(Tno **r, char *word, int *numero) {
+void insere(Tno **r, char *word, int *numero, long int altura) {
   int i;
   if (*r == NULL) {
     *r = (Tno *)malloc(sizeof(Tno));
@@ -14,12 +14,14 @@ void insere(Tno **r, char *word, int *numero) {
     *numero = *numero + 1;
     (*r)->esq = NULL;
     (*r)->dir = NULL;
+    (*r)->altura = altura + 1;
   } else {
     i = compara(&(*r)->i, word);
     if (i > 0)
-      insere(&(*r)->esq, word, numero);
+      insere(&(*r)->esq, word, numero, (*r)->altura);
     else if (i < 0)
-      insere(&(*r)->dir, word, numero);
+      insere(&(*r)->dir, word, numero, (*r)->altura);
+    else adicionaVez(&((*r)->i));
   }
 }
 
@@ -82,4 +84,22 @@ void freeEveryOne(Tno **raiz) {
   freeEveryOne(&((*raiz)->dir));
   free((*raiz)->i);
   free(*raiz);
+}
+void achaItem(Tno *raiz, char *word){
+  int i;
+  if(raiz != NULL){
+    i = compara(&(raiz->i), word);
+    if(i == 0){
+      printaItemPlus((raiz->i), raiz->altura);
+      return;
+    }
+    if(i < 0) {
+      achaItem(raiz->dir, word);
+      return;
+    }
+    achaItem(raiz->esq, word);
+  }
+  else {
+    printf("Nao encontrado\n");
+  }
 }

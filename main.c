@@ -43,9 +43,11 @@ int main(int argc, char *argv[]) {
             out = fopen(arquivoOut, "w");
             break;
           case 'r':
-            r = 1;
-            strcpy(arquivoIn, &argv[i][2]);
-            in = fopen(arquivoIn, "r");
+            if(!w){
+              r = 1;
+              strcpy(arquivoIn, &argv[i][2]);
+              in = fopen(arquivoIn, "r");
+            }
             break;
           case 's':
             s = 1;
@@ -83,7 +85,7 @@ int main(int argc, char *argv[]) {
 
         if (strlen(palavra) >
             0) // se a palavra n for apenas o /0 coloca ela na árvore
-          insere(&raiz, palavra, &numero);
+          insere(&raiz, palavra, &numero, 0);
 
         i = 0;
       }
@@ -102,9 +104,8 @@ int main(int argc, char *argv[]) {
       } else {
         palavra[i] = '\0'; // caso n for letra finaliza a palavra com /0.
 
-        if (strlen(palavra) >
-            0) // se a palavra n for apenas o /0 coloca ela na árvore
-          insere(&raiz, palavra, &numero);
+        if (strlen(palavra) > 0) // se a palavra n for apenas o /0 coloca ela na árvore
+          insere(&raiz, palavra, &numero, 0);
 
         i = 0;
       }
@@ -113,17 +114,21 @@ int main(int argc, char *argv[]) {
   }
   // FIM RECEPCAO E INSERCAO
 
-  if(n){
+  if(n){ // Se n for verdade
     if (numero < numb)
       numb = numero;
     res = mais_frequente(n, raiz);
     for (i = 0; i < n; i++) {
       printaItem((res + i));
-      if(w)
+      if(w) // se w escreve no arquivo
         printaArq((res + i), out);
     }
+    free(res);
   }
+  if(s){
+    achaItem(raiz, word);
+  }
+  if(w) fclose(out); // se w fecha o arquivo
   freeEveryOne(&raiz);
-  free(res);
   return 0;
 }

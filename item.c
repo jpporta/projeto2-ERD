@@ -12,7 +12,6 @@ void addItem(Ti **i, char *word) { // adiciona item ao no da arvore
 // compara se a palavra eh maior menor ou igual a do no
 int compara(Ti **i, char *word) {
   if (strcmp((*i)->palavra, word) == 0) {
-    (*i)->vez++;
     return 0;
   }
   if (strcmp((*i)->palavra, word) > 0)
@@ -36,4 +35,7 @@ char limpa(char l) { // limpa uma palavra recebida, transformando-a em
     return '\0';
   }
   return l;
+}
+void printaItemPlus(Ti *i, long int altura){
+  printf("%li %s %li __\n", i->vez, i->palavra, altura);
 }
