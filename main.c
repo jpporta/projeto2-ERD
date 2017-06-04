@@ -13,6 +13,7 @@ Projeto básico: _____ % concluído - Obs: ___________________________________
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "item.h"
 #include "ST.h"
 
@@ -126,7 +127,10 @@ int main(int argc, char *argv[]) {
     free(res);
   }
   if(s){
+    clock_t begin = clock();
     achaItem(raiz, word);
+    clock_t end = clock();
+    printf("%li\n", (long int)(end - begin));
   }
   if(w) fclose(out); // se w fecha o arquivo
   freeEveryOne(&raiz);
