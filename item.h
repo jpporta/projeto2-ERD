@@ -8,5 +8,5 @@ int compara(Ti **i, char *word);
 void printaItem(Ti *i);
 char limpa(char l);
 void adicionaVez(Ti **i);
-void printaArq(Ti *i, FILE *out);
+void printaArq(char *p, FILE *out);
 void printaItemPlus(Ti *i, long int altura);

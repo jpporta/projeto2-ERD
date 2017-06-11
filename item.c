@@ -3,7 +3,6 @@
 #include <string.h>
 #include "item.h"
 
-
 void addItem(Ti **i, char *word) { // adiciona item ao no da arvore
   (*i) = (Ti *)malloc(sizeof(Ti));
   strcpy((*i)->palavra, word);
@@ -24,10 +23,9 @@ void printaItem(Ti *i) {
   printf("%li ", i->vez);
   puts(i->palavra);
 }
-void printaArq(Ti *i, FILE *out) {
-  fprintf(out, "%li ", i->vez);
-  fputs(i->palavra, out);
-  fprintf(out, "\n");
+void printaArq(char *p, FILE *out) {
+  fputs(p, out);
+  fprintf(out, " ");
 }
 char limpa(char l) { // limpa uma palavra recebida, transformando-a em
                      // somente letras
@@ -36,6 +34,6 @@ char limpa(char l) { // limpa uma palavra recebida, transformando-a em
   }
   return l;
 }
-void printaItemPlus(Ti *i, long int altura){
-  printf("%li %s %li ", i->vez, i->palavra, altura);
+void printaItemPlus(Ti *i, long int altura) {
+  printf("%s %li %li ", i->palavra, i->vez, altura);
 }
